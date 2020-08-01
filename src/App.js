@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavItem, NavLink, Nav } from 'reactstrap';
 import './App.css';
 import { render } from '@testing-library/react';
+import Menu from './components/MenuComponent'
+
 
 function App() {
   render() 
   {
   return (
-    <div className="App">
+    <div>
       <Navbar color="light" light expand="md">
        <NavbarBrand href="/">reactstrap</NavbarBrand>
           <Nav className="mr-auto" navbar>
@@ -19,6 +21,7 @@ function App() {
             </NavItem>
             </Nav>
         </Navbar>
+        <Menu />
     </div>
   );
   }
