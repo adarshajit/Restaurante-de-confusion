@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { render } from '@testing-library/react';
 import { Card, CardImgOverlay,CardBody,CardText,CardTitle,CardImg } from 'reactstrap';
+import DishDetail from './DishDetailComponent';
 
 
 
@@ -9,26 +9,22 @@ class Menu extends Component{
     constructor(props){
     super(props)
     this.state ={
-        selectedDishes : null  
+        selectedDishes : null,
+        comments : null
     }
     }
 
-    onSelectedDish(dishes){
-        this.setState({selectedDishes : dishes});}
+    onSelectedDish(dish){
+        this.setState({selectedDishes : dish});
+        this.setState({ comments : dish.comments })
     
-    cardRender(dish){
+    }
+    
+    renderDish(dish){
         if (dish != null)
             {
                 return(
-                    <div className="col-12 col-md-5 mt-1">
-                    <Card>
-                        <CardImg width = "100%" src={dish.image} alt={dish.name} />
-                        <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                        </CardBody>
-                    </Card>
-                    </div>
+                   <DishDetail dishes ={dish} comments ={this.state.comments}/>
                 );
             }
         else{
@@ -60,7 +56,7 @@ class Menu extends Component{
                 {menu}
               </div>
               <div className="row">
-                {this.cardRender(this.state.selectedDishes)}
+                {this.renderDish(this.state.selectedDishes)}
               </div>
             </div>
           );
