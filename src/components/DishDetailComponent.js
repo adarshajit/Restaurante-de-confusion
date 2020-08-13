@@ -6,50 +6,80 @@ import { Card, CardImgOverlay,CardBody,CardText,CardTitle,CardImg } from 'reacts
 
 class DishDetail extends Component{
     constructor(props){
-    super(props)
+    super(props);
 
     }
 
-
-render(){
-    const details = this.props.dishes;
-    const list = this.props.comments.map((comment)=>{
+    renderDish(dish){
+        if(dish != null){
+            return(
+                    <Card>
+                        <CardImg 
+                            width = "100%" 
+                            src={dish.image} 
+                            alt={dish.name} 
+                        />
+                        <CardBody>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>
+                );
+    }else{
         return(
-            <div key={comment.id}>
-                <Card>
-                    <CardBody>
-                        <CardTitle><h5>{comment.comment}</h5></CardTitle>
-                        <CardText>--{comment.author},{comment.date}</CardText>
-                    </CardBody>
-                </Card>
+            <div></div>
+        )
+
+    }
+}
+    renderComments(dish){
+        if(dish != null){
+            let list = dish.comments.map((comment) =>{
+                return(
+                    <div key={comment.id}>
+                    <Card>
+                        <CardBody>
+                            <CardTitle><h5>{comment.comment}</h5></CardTitle>
+                            <CardText>--{comment.author},{comment.date}</CardText>
+                        </CardBody>
+                    </Card>
+    
+                </div>
+                )
+            })
+        return(
+            <div>
+                <h2>Comments</h2>
+                {list}
+            </div> )
+        }
+        else{
+            return(
+            <div></div>)
+        }
+    }
+
+    render(){
+        return(
+            <div className="container">
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderDish(this.props.dish)}
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderComments(this.props.dish)}
+                    </div>
+                    
+
+                </div>
 
             </div>
         )
-    })
+    }
 
-    return(
-        <div className="row">
-            <div className="col-12 col-md-5 mt-1">
-                <Card>
-                    <CardImg 
-                        width = "100%" 
-                        src={details.image} 
-                        alt={details.name} 
-                    />
-                    <CardBody>
-                        <CardTitle>{details.name}</CardTitle>
-                        <CardText>{details.description}</CardText>
-                    </CardBody>
-                </Card>
-            </div>
-        <div className="col-12 col-md-5 mt-1">
-            <h2>Comments</h2>
-            {list}
-        </div>
-    </div>
-    )
-}
 
-}
+
+    }
+
 
 export default DishDetail;
