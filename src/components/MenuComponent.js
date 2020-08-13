@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
-import { render } from '@testing-library/react';
-import { Card, CardImgOverlay,CardBody,CardText,CardTitle,CardImg } from 'reactstrap';
+import { Card, CardImgOverlay,CardTitle,CardImg } from 'reactstrap';
 
 
 
 
 
 class Menu extends Component{
-    constructor(props){
-    super(props);
-
-    }
-
    
-   
-
     render(){
     const menu = this.props.dishes.map((dish)=>{
         return(
@@ -38,7 +30,7 @@ class Menu extends Component{
               </div>
             </div>
           );
-        }
+    }
 }
 
 export default Menu

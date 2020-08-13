@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import { render } from '@testing-library/react';
 import Main from './components/MainComponent'
 
 

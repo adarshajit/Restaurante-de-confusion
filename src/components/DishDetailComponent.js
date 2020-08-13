@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { render } from '@testing-library/react';
-import { Card, CardImgOverlay,CardBody,CardText,CardTitle,CardImg } from 'reactstrap';
+import { Card,CardBody,CardText,CardTitle,CardImg } from 'reactstrap';
 
 
 
 class DishDetail extends Component{
-    constructor(props){
-    super(props);
-
-    }
-
+    
     renderDish(dish){
         if(dish != null){
             return(
