@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, NavItem, NavLink, Nav } from 'reactstrap';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 import Menu from './MenuComponent'
 import DishDetail from './DishDetailComponent';
 import { DISHES } from '../shared/dishes'
@@ -23,20 +24,11 @@ class Main extends Component{
   render(){
     return (
       <div>
-        <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink href="/components/">Components</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/extras">Extras</NavLink>
-              </NavItem>
-              </Nav>
-          </Navbar>
+          <Header />
           <Menu dishes = {this.state.dishes} 
               onClick={(dishId)=> this.onSelectedDish(dishId)}/>
           <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDishes)[0]}/>
+          <Footer />
       </div>
     );
     }
