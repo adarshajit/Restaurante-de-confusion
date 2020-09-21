@@ -34,12 +34,13 @@ import { Link } from 'react-router-dom';
                         <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
                         <BreadcrumbItem active>Menu</BreadcrumbItem>
                     </Breadcrumb>
-                    
+                </div>
+                   
                     <div className="col-5">
                         <h3>Menu</h3>
                         <hr />
                     </div>                
-                </div>
+    
                 <div className="row">
                     {menu}
                 </div>

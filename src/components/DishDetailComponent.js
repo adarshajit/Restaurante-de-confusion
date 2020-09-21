@@ -145,7 +145,7 @@ function RenderDish({ dish }) {
 function RenderComments({ comments, postComment, dishId }) {
   if (comments != null) {
     return (
-      <div className="col-12 col-md-5 m-1">
+      <div className="col-12 col-md-5 m-1 list-unstyled">
         <h4>Comments</h4>
         
           {comments.map(comment => {
