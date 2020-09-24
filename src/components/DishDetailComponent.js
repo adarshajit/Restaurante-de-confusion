@@ -17,8 +17,9 @@ import {
 } from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
-import { Loading } from './LoadingComponent';
-import { baseUrl } from '../shared/baseUrl';
+import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || val.length <= len;
@@ -42,7 +43,12 @@ class CommentForm extends Component {
 
   handleSubmit(values) {
     this.toggleModal();
-    this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
+    this.props.postComment(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
+    );
   }
 
   render() {
@@ -130,27 +136,33 @@ class CommentForm extends Component {
 function RenderDish({ dish }) {
   return (
     <div className="col-12 col-md-5 m-1">
-
+      <FadeTransform
+        in
+        transformProps={{
+          exitTransform: "scale(0.5) translateY(-50%)"
+        }}
+      >
         <Card>
-        <CardImg top src={baseUrl + dish.image} alt={dish.name} />
+          <CardImg top src={baseUrl + dish.image} alt={dish.name} />
           <CardBody>
             <CardTitle>{dish.name}</CardTitle>
             <CardText>{dish.description}</CardText>
           </CardBody>
         </Card>
+      </FadeTransform>
     </div>
   );
 }
 
-function RenderComments({comments, postComment, dishId}) {
+function RenderComments({ comments, postComment, dishId }) {
   if (comments != null) {
     return (
       <div className="col-12 col-md-5 m-1 list-unstyled">
         <h4>Comments</h4>
-        
+        <Stagger in>
           {comments.map(comment => {
             return (
-              
+              <Fade in key={comment.id}>
                 <li key={comment.id}>
                   <p>{comment.comment}</p>
                   <p>
@@ -162,11 +174,11 @@ function RenderComments({comments, postComment, dishId}) {
                     }).format(new Date(Date.parse(comment.date)))}
                   </p>
                 </li>
-              
+              </Fade>
             );
           })}
-         <CommentForm dishId={dishId} postComment={postComment} />
-
+        </Stagger>
+        <CommentForm dishId={dishId} postComment={postComment} />
       </div>
     );
   } else return <div />;
@@ -174,24 +186,22 @@ function RenderComments({comments, postComment, dishId}) {
 
 const DishDetailComponent = props => {
   if (props.isLoading) {
-    return(
-        <div className="container">
-            <div className="row">            
-                <Loading />
-            </div>
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
         </div>
+      </div>
     );
-}
-else if (props.errMess) {
-    return(
-        <div className="container">
-            <div className="row">            
-                <h4>{props.errMess}</h4>
-            </div>
+  } else if (props.errMess) {
+    return (
+      <div className="container">
+        <div className="row">
+          <h4>{props.errMess}</h4>
         </div>
+      </div>
     );
-}
-else if (props.dish != null) 
+  } else if (props.dish != null)
     return (
       <div className="container">
         <div className="row">
