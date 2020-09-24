@@ -260,16 +260,17 @@
     }
   ],
   "feedback": [
+
     {
-      "firstname": "fdas",
-      "lastname": "afds",
-      "telnum": "134113",
-      "email": "dafdads@daffas.dfdafd",
-      "agree": true,
+      "firstname": "Adarsh ",
+      "lastname": "Ajit",
+      "telnum": "9727889919",
+      "email": "adarshajit@gmail.com",
+      "agree": false,
       "contactType": "Email",
-      "message": "afadsfds",
-      "date": "2017-12-04T09:41:49.890Z",
-      "id": 1
+      "message": "this is a test",
+      "date": "2020-09-24T17:03:28.272Z",
+      "id": 2
     }
   ]
 }
