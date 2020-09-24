@@ -18,7 +18,6 @@ import {
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
 
-
 const required = val => val && val.length;
 const maxLength = len => val => !val || val.length <= len;
 const minLength = len => val => val && val.length >= len;
@@ -41,8 +40,8 @@ class CommentForm extends Component {
 
   handleSubmit(values) {
     this.toggleModal();
-    console.log('Current State is: ' + JSON.stringify(values));
-    alert('Current State is: ' + JSON.stringify(values));
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+
   }
 
   render() {
@@ -142,7 +141,7 @@ function RenderDish({ dish }) {
   );
 }
 
-function RenderComments({ comments, postComment, dishId }) {
+function RenderComments({comments, addComment, dishId}) {
   if (comments != null) {
     return (
       <div className="col-12 col-md-5 m-1 list-unstyled">
@@ -165,7 +164,8 @@ function RenderComments({ comments, postComment, dishId }) {
               
             );
           })}
-        <CommentForm dishId={dishId} postComment={postComment} />
+         <CommentForm dishId={dishId} addComment={addComment} />
+
       </div>
     );
   } else return <div />;
@@ -191,7 +191,7 @@ const DishDetailComponent = props => {
           <RenderDish dish={props.dish} />
           <RenderComments
             comments={props.comments}
-            postComment={props.postComment}
+            addComment={props.addComment}
             dishId={props.dish.id}
           />
         </div>
